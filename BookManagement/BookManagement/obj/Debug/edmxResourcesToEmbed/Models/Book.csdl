@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLBanSachModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CHU_DE">
+    <Key>
+      <PropertyRef Name="Mcd" />
+    </Key>
+    <Property Name="Mcd" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ten_chu_de" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PID" Type="Int32" />
+    <NavigationProperty Name="SACH" Relationship="Self.SACH_FK00" FromRole="CHU_DE" ToRole="SACH" />
+  </EntityType>
+  <EntityType Name="NHA_XUAT_BAN">
+    <Key>
+      <PropertyRef Name="Mnxb" />
+    </Key>
+    <Property Name="Mnxb" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ten_nha_xuat_ban" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Dia_chi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Dien_thoai" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SACH" Relationship="Self.SACH_FK01" FromRole="NHA_XUAT_BAN" ToRole="SACH" />
+  </EntityType>
+  <EntityType Name="QUANG_CAO">
+    <Key>
+      <PropertyRef Name="STT" />
+    </Key>
+    <Property Name="STT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenCTy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Hinh_Minh_Hoa" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="HREF" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Ngay_bat_dau" Type="DateTime" Precision="3" />
+    <Property Name="Ngay_het_han" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="SACH">
+    <Key>
+      <PropertyRef Name="Ms" />
+    </Key>
+    <Property Name="Ms" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ten_sach" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Don_gia" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Don_vi_tinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Mo_ta" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Hinh_minh_hoa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Mcd" Type="Int32" />
+    <Property Name="Mnxb" Type="Int32" />
+    <Property Name="Ngay_cap_nhat" Type="DateTime" Precision="3" />
+    <Property Name="So_luong_ban" Type="Int32" />
+    <Property Name="So_lan_xem" Type="Int32" />
+    <Property Name="so_luong_con" Type="Int32" />
+    <NavigationProperty Name="CHU_DE" Relationship="Self.SACH_FK00" FromRole="SACH" ToRole="CHU_DE" />
+    <NavigationProperty Name="NHA_XUAT_BAN" Relationship="Self.SACH_FK01" FromRole="SACH" ToRole="NHA_XUAT_BAN" />
+  </EntityType>
+  <EntityType Name="TAC_GIA">
+    <Key>
+      <PropertyRef Name="Mtg" />
+    </Key>
+    <Property Name="Mtg" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ten_tac_gia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Dia_chi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Dien_thoai" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="SACH_FK00">
+    <End Role="CHU_DE" Type="Self.CHU_DE" Multiplicity="0..1" />
+    <End Role="SACH" Type="Self.SACH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CHU_DE">
+        <PropertyRef Name="Mcd" />
+      </Principal>
+      <Dependent Role="SACH">
+        <PropertyRef Name="Mcd" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SACH_FK01">
+    <End Role="NHA_XUAT_BAN" Type="Self.NHA_XUAT_BAN" Multiplicity="0..1" />
+    <End Role="SACH" Type="Self.SACH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHA_XUAT_BAN">
+        <PropertyRef Name="Mnxb" />
+      </Principal>
+      <Dependent Role="SACH">
+        <PropertyRef Name="Mnxb" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLBanSachEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CHU_DE" EntityType="Self.CHU_DE" />
+    <EntitySet Name="NHA_XUAT_BAN" EntityType="Self.NHA_XUAT_BAN" />
+    <EntitySet Name="QUANG_CAO" EntityType="Self.QUANG_CAO" />
+    <EntitySet Name="SACH" EntityType="Self.SACH" />
+    <EntitySet Name="TAC_GIA" EntityType="Self.TAC_GIA" />
+    <AssociationSet Name="SACH_FK00" Association="Self.SACH_FK00">
+      <End Role="CHU_DE" EntitySet="CHU_DE" />
+      <End Role="SACH" EntitySet="SACH" />
+    </AssociationSet>
+    <AssociationSet Name="SACH_FK01" Association="Self.SACH_FK01">
+      <End Role="NHA_XUAT_BAN" EntitySet="NHA_XUAT_BAN" />
+      <End Role="SACH" EntitySet="SACH" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
