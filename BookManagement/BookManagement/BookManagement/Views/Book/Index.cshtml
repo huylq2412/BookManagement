@@ -1,0 +1,94 @@
+﻿@model IEnumerable<BookManagement.Models.SACH>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Ten_sach)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Don_gia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Don_vi_tinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mo_ta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hinh_minh_hoa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ngay_cap_nhat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.So_luong_ban)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.So_lan_xem)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.so_luong_con)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CHU_DE.Ten_chu_de)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NHA_XUAT_BAN.Ten_nha_xuat_ban)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ten_sach)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Don_gia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Don_vi_tinh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mo_ta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hinh_minh_hoa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ngay_cap_nhat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.So_luong_ban)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.So_lan_xem)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.so_luong_con)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CHU_DE.Ten_chu_de)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NHA_XUAT_BAN.Ten_nha_xuat_ban)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Ms }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Ms }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Ms })
+        </td>
+    </tr>
+}
+
+</table>

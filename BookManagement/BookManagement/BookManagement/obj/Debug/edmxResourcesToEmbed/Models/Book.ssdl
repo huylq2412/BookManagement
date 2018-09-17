@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLBanSachModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CHU_DE">
+    <Key>
+      <PropertyRef Name="Mcd" />
+    </Key>
+    <Property Name="Mcd" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ten_chu_de" Type="nvarchar" MaxLength="50" />
+    <Property Name="PID" Type="int" />
+  </EntityType>
+  <EntityType Name="NHA_XUAT_BAN">
+    <Key>
+      <PropertyRef Name="Mnxb" />
+    </Key>
+    <Property Name="Mnxb" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ten_nha_xuat_ban" Type="nvarchar" MaxLength="100" />
+    <Property Name="Dia_chi" Type="nvarchar" MaxLength="150" />
+    <Property Name="Dien_thoai" Type="nvarchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="QUANG_CAO">
+    <Key>
+      <PropertyRef Name="STT" />
+    </Key>
+    <Property Name="STT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenCTy" Type="nvarchar" MaxLength="200" />
+    <Property Name="Hinh_Minh_Hoa" Type="nvarchar" MaxLength="100" />
+    <Property Name="HREF" Type="nvarchar" MaxLength="100" />
+    <Property Name="Ngay_bat_dau" Type="datetime" />
+    <Property Name="Ngay_het_han" Type="datetime" />
+  </EntityType>
+  <EntityType Name="SACH">
+    <Key>
+      <PropertyRef Name="Ms" />
+    </Key>
+    <Property Name="Ms" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ten_sach" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Don_gia" Type="money" />
+    <Property Name="Don_vi_tinh" Type="nvarchar" MaxLength="10" />
+    <Property Name="Mo_ta" Type="ntext" />
+    <Property Name="Hinh_minh_hoa" Type="nvarchar" MaxLength="50" />
+    <Property Name="Mcd" Type="int" />
+    <Property Name="Mnxb" Type="int" />
+    <Property Name="Ngay_cap_nhat" Type="datetime" />
+    <Property Name="So_luong_ban" Type="int" />
+    <Property Name="So_lan_xem" Type="int" />
+    <Property Name="so_luong_con" Type="int" />
+  </EntityType>
+  <EntityType Name="TAC_GIA">
+    <Key>
+      <PropertyRef Name="Mtg" />
+    </Key>
+    <Property Name="Mtg" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ten_tac_gia" Type="nvarchar" MaxLength="50" />
+    <Property Name="Dia_chi" Type="nvarchar" MaxLength="100" />
+    <Property Name="Dien_thoai" Type="nvarchar" MaxLength="15" />
+  </EntityType>
+  <Association Name="SACH_FK00">
+    <End Role="CHU_DE" Type="Self.CHU_DE" Multiplicity="0..1" />
+    <End Role="SACH" Type="Self.SACH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CHU_DE">
+        <PropertyRef Name="Mcd" />
+      </Principal>
+      <Dependent Role="SACH">
+        <PropertyRef Name="Mcd" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SACH_FK01">
+    <End Role="NHA_XUAT_BAN" Type="Self.NHA_XUAT_BAN" Multiplicity="0..1" />
+    <End Role="SACH" Type="Self.SACH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHA_XUAT_BAN">
+        <PropertyRef Name="Mnxb" />
+      </Principal>
+      <Dependent Role="SACH">
+        <PropertyRef Name="Mnxb" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLBanSachModelStoreContainer">
+    <EntitySet Name="CHU_DE" EntityType="Self.CHU_DE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NHA_XUAT_BAN" EntityType="Self.NHA_XUAT_BAN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QUANG_CAO" EntityType="Self.QUANG_CAO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SACH" EntityType="Self.SACH" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TAC_GIA" EntityType="Self.TAC_GIA" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="SACH_FK00" Association="Self.SACH_FK00">
+      <End Role="CHU_DE" EntitySet="CHU_DE" />
+      <End Role="SACH" EntitySet="SACH" />
+    </AssociationSet>
+    <AssociationSet Name="SACH_FK01" Association="Self.SACH_FK01">
+      <End Role="NHA_XUAT_BAN" EntitySet="NHA_XUAT_BAN" />
+      <End Role="SACH" EntitySet="SACH" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
