@@ -1,0 +1,107 @@
+﻿@model BookManagement.Models.SACH
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SACH</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Ten_sach)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ten_sach)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Don_gia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Don_gia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Don_vi_tinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Don_vi_tinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mo_ta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mo_ta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hinh_minh_hoa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hinh_minh_hoa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ngay_cap_nhat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ngay_cap_nhat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.So_luong_ban)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.So_luong_ban)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.So_lan_xem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.So_lan_xem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.so_luong_con)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.so_luong_con)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CHU_DE.Ten_chu_de)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CHU_DE.Ten_chu_de)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NHA_XUAT_BAN.Ten_nha_xuat_ban)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NHA_XUAT_BAN.Ten_nha_xuat_ban)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Ms }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
