@@ -1,0 +1,118 @@
+body{
+  background:#eee
+}
+main{
+  padding: 5vh 5vw
+}
+h1{
+  font-size:1.5em
+}
+.form-search{
+  background: #fff;
+  padding:2vh 15px 1vh
+}
+input{
+  margin: 1vh 0;
+  border: 1px solid #000 !important;
+  border-radius:0 !important
+}
+input:focus{
+  outline:yellow !important;
+}
+button{
+  border-radius:0 !important
+}
+h1{
+  text-transform: uppercase;
+  position: relative
+}
+h1::after{
+  content:"";
+  width:50%;
+  height:1px;
+  position: absolute;
+  left:0;
+  bottom:-2vh;
+  background: rgba(0,0,0,.5)
+}
+.book-item{
+  padding:5vh 2vw;
+}
+.book-item-wrap{
+  position: relative
+}
+.book-item-wrap img{
+  width:100%
+}
+.book-label{
+  font-size: 1.5rem;
+  color:#000;
+  padding: 1vh 0;
+  font-weight: 400
+}
+.book-label a{
+  color:#000;
+}
+.book-label a:hover{
+  text-decoration: none
+}
+.download{
+  width:100%;
+  background: rgba(0,0,0,.8);
+  display: block;
+  padding:1vh 0;
+}
+.download>span{
+  width:49%;
+  text-align: center;
+  display: inline-block;
+  padding:1vh 1vw
+}
+.download i{
+  color:#fff;
+  font-size: 1.2em
+}
+.book-row{
+  background: #fff;
+  margin-top:2vh;
+  padding:2vh 0
+}
+.description-item{
+  font-size: 1em;
+  line-height:1.6em
+}
+/* new 20/09/2018 */
+.book-item-figure{
+  position: relative;
+  width:100%;
+  height:50vh;
+  background:url('/assets/img/Upload/Kt.jpg') top center no-repeat;
+  background-size: cover 
+}
+.preview{
+  background:rgba(0,0,0,.8);
+  width:100%;
+  height:100%;
+  position: absolute;
+  top:0;
+  left:0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .5s ease-in-out;
+  transform: scaleX(0);
+  transform-origin: 0 50%
+}
+.preview a{
+  font-size: 1.5em;
+  color: #fff;
+}
+.preview i{
+  margin: 0 10px
+}
+.preview a:hover{
+  text-decoration: none
+}
+.book-item-figure:hover .preview{
+  transform: scaleX(1)
+}

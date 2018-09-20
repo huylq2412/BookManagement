@@ -14,6 +14,13 @@ namespace BookManagement.Models
     
     public partial class SACH
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public SACH()
+        {
+            this.CT_DAT_HANG = new HashSet<CT_DAT_HANG>();
+            this.THAM_GIA = new HashSet<THAM_GIA>();
+        }
+    
         public int Ms { get; set; }
         public string Ten_sach { get; set; }
         public Nullable<decimal> Don_gia { get; set; }
@@ -29,5 +36,9 @@ namespace BookManagement.Models
     
         public virtual CHU_DE CHU_DE { get; set; }
         public virtual NHA_XUAT_BAN NHA_XUAT_BAN { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CT_DAT_HANG> CT_DAT_HANG { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<THAM_GIA> THAM_GIA { get; set; }
     }
 }

@@ -223,7 +223,16 @@
     <Compile Include="Models\CHU_DE.cs">
       <DependentUpon>Book.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CT_DAT_HANG.cs">
+      <DependentUpon>Book.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DON_DAT_HANG.cs">
+      <DependentUpon>Book.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\KHACH_HANG.cs">
+      <DependentUpon>Book.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\NHA_XUAT_BAN.cs">
       <DependentUpon>Book.tt</DependentUpon>
@@ -235,6 +244,9 @@
       <DependentUpon>Book.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TAC_GIA.cs">
+      <DependentUpon>Book.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\THAM_GIA.cs">
       <DependentUpon>Book.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

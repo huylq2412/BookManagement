@@ -14,9 +14,18 @@ namespace BookManagement.Models
     
     public partial class TAC_GIA
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TAC_GIA()
+        {
+            this.THAM_GIA = new HashSet<THAM_GIA>();
+        }
+    
         public int Mtg { get; set; }
         public string Ten_tac_gia { get; set; }
         public string Dia_chi { get; set; }
         public string Dien_thoai { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<THAM_GIA> THAM_GIA { get; set; }
     }
 }

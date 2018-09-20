@@ -30,5 +30,9 @@ namespace BookManagement.Models
         public virtual DbSet<QUANG_CAO> QUANG_CAO { get; set; }
         public virtual DbSet<SACH> SACH { get; set; }
         public virtual DbSet<TAC_GIA> TAC_GIA { get; set; }
+        public virtual DbSet<CT_DAT_HANG> CT_DAT_HANG { get; set; }
+        public virtual DbSet<DON_DAT_HANG> DON_DAT_HANG { get; set; }
+        public virtual DbSet<KHACH_HANG> KHACH_HANG { get; set; }
+        public virtual DbSet<THAM_GIA> THAM_GIA { get; set; }
     }
 }

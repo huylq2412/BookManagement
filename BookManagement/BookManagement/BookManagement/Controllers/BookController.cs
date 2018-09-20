@@ -7,20 +7,27 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BookManagement.Models;
+using PagedList;
 
 namespace BookManagement.Controllers
 {
     public class BookController : Controller
     {
         private QLBanSachEntities db = new QLBanSachEntities();
-
+        [HttpGet]
         // GET: Book
         public ActionResult Index()
         {
             var sACH = db.SACH.Include(s => s.CHU_DE).Include(s => s.NHA_XUAT_BAN);
             return View(sACH.ToList());
         }
-
+        //find Book
+        [HttpPost]
+        public ActionResult Index(string bookName, string bookCategory)
+        {
+            var books = db.SACH.ToList().Where(p => p.Ten_sach.Contains(bookName) && p.CHU_DE.Ten_chu_de.Contains(bookCategory));
+            return View(books);
+        }
         // GET: Book/Details/5
         public ActionResult Details(int? id)
         {

@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\MyPC\Desktop\Learn_C#\SEM3\PROJECT\BookManagement\BookManagement\BookManagement\Models\Book.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\projectSem3\BookManagement\BookManagement\BookManagement\BookManagement\Models\Book.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

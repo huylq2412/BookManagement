@@ -60,5 +60,54 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="CT_DAT_HANG">
+      <EntityTypeMapping TypeName="QLBanSachModel.CT_DAT_HANG">
+        <MappingFragment StoreEntitySet="CT_DAT_HANG">
+          <ScalarProperty Name="Thanh_tien" ColumnName="Thanh_tien" />
+          <ScalarProperty Name="Don_gia" ColumnName="Don_gia" />
+          <ScalarProperty Name="So_luong" ColumnName="So_luong" />
+          <ScalarProperty Name="Ms" ColumnName="Ms" />
+          <ScalarProperty Name="Sdh" ColumnName="Sdh" />
+          <ScalarProperty Name="Mctddh" ColumnName="Mctddh" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DON_DAT_HANG">
+      <EntityTypeMapping TypeName="QLBanSachModel.DON_DAT_HANG">
+        <MappingFragment StoreEntitySet="DON_DAT_HANG">
+          <ScalarProperty Name="Ngay_giao_hang" ColumnName="Ngay_giao_hang" />
+          <ScalarProperty Name="Da_giao_hang" ColumnName="Da_giao_hang" />
+          <ScalarProperty Name="Tri_gia" ColumnName="Tri_gia" />
+          <ScalarProperty Name="Ngay_dat_hang" ColumnName="Ngay_dat_hang" />
+          <ScalarProperty Name="Mkh" ColumnName="Mkh" />
+          <ScalarProperty Name="Sdh" ColumnName="Sdh" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KHACH_HANG">
+      <EntityTypeMapping TypeName="QLBanSachModel.KHACH_HANG">
+        <MappingFragment StoreEntitySet="KHACH_HANG">
+          <ScalarProperty Name="Quyen" ColumnName="Quyen" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Gioi_tinh" ColumnName="Gioi_tinh" />
+          <ScalarProperty Name="Ngay_sinh" ColumnName="Ngay_sinh" />
+          <ScalarProperty Name="Mat_khau" ColumnName="Mat_khau" />
+          <ScalarProperty Name="Ten_dang_nhap" ColumnName="Ten_dang_nhap" />
+          <ScalarProperty Name="Dien_thoai" ColumnName="Dien_thoai" />
+          <ScalarProperty Name="Dia_chi" ColumnName="Dia_chi" />
+          <ScalarProperty Name="Ho_ten" ColumnName="Ho_ten" />
+          <ScalarProperty Name="Mkh" ColumnName="Mkh" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="THAM_GIA">
+      <EntityTypeMapping TypeName="QLBanSachModel.THAM_GIA">
+        <MappingFragment StoreEntitySet="THAM_GIA">
+          <ScalarProperty Name="Vai_tro" ColumnName="Vai_tro" />
+          <ScalarProperty Name="Mtg" ColumnName="Mtg" />
+          <ScalarProperty Name="Ms" ColumnName="Ms" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
