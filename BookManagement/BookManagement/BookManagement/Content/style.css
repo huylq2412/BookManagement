@@ -2,6 +2,10 @@
     background: #eee
 }
 
+.book-row {
+    box-shadow: 0px 0 30px 0 rgba(7,7,7,.2)
+}
+
 main {
     padding: 5vh 5vw
 }
@@ -41,11 +45,12 @@ h1 {
         position: absolute;
         left: 0;
         bottom: -2vh;
-        background: rgba(0,0,0,.5)
+        background: rgba(0,0,0,.3)
     }
 
 .book-item {
     padding: 5vh 2vw;
+    min-height:40vh
 }
 
 .book-item-wrap {
@@ -124,10 +129,18 @@ h1 {
     transform: scaleX(0);
     transform-origin: 0 50%
 }
-
+    .preview div{
+        display:block;
+        width: 100%;
+        text-align:center
+    }
+    .preview>div>div {
+        padding: 10px 0
+    }
     .preview a {
-        font-size: 1.5em;
+        font-size: 1.2em;
         color: #fff;
+        font-weight:400
     }
 
     .preview i {

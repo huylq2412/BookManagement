@@ -1,103 +1,35 @@
 ﻿@model IEnumerable<BookManagement.Models.SACH>
-
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@section scripts{
+    <script src="~/Content/js/updateBookt.js"></script>
+}
+@section style{
+    <link href="~/Content/style.css" rel="stylesheet" />
+}
 
 @*<p>
         @Html.ActionLink("Create New", "Create")
     </p>*@
-@*<table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Ten_sach)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Don_gia)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Don_vi_tinh)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Mo_ta)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Hinh_minh_hoa)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Ngay_cap_nhat)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.So_luong_ban)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.So_lan_xem)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.so_luong_con)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CHU_DE.Ten_chu_de)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NHA_XUAT_BAN.Ten_nha_xuat_ban)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Ten_sach)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Don_gia)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Don_vi_tinh)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Mo_ta)
-                </td>
-                <td>
-                    <img src="@Url.Content(String.Format("~/Images/Upload/{0}",@Html.DisplayFor(modelItem => item.Hinh_minh_hoa)+".jpg"))" alt="Image not found" />
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Ngay_cap_nhat)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.So_luong_ban)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.So_lan_xem)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.so_luong_con)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CHU_DE.Ten_chu_de)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NHA_XUAT_BAN.Ten_nha_xuat_ban)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Ms }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Ms }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Ms })
-                </td>
-            </tr>
-        }
-
-    </table>*@
-<div class="row">
+@helper Truncate(string input, int length)
+{
+    if (input.Length <= length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length)<text>...</text>
+    }
+}
+<div class="row book-row">
     <div class="col-md-12 form-search">
-        <h1>Thư viện</h1>
-        <hr style="background:#fff">
+        <h1>Tìm kiếm</h1>
+        <hr style="visibility:hidden">
         <!-- ten sach, tac gia, chu de -->
-        <form method="post">
+        <form method="post" action="@Url.Action("updateBook","Book")">
             <div class="form-group row">
                 <div class="col-lg-3 col-md-4">
                     <input type="text" class="form-control" id="bookName" placeholder="Tên sách" name="bookName">
@@ -110,6 +42,11 @@
                         <span><i class="fa fa-search"></i></span>
                         <strong>Tìm kiếm</strong>
                     </button>
+                    @Html.ActionLink("Tạo sách mới", "Create", null, new { @class = "btn btn-success" })
+
+                </div>
+                <div class="col-lg-3">
+                    <a href="@Url.Action("Index","Book")" class="btn btn-danger pull-right">Về trang đầu</a>
                 </div>
             </div>
         </form>
@@ -122,11 +59,80 @@
             <div class="book-item-wrap">
                 <div class="book-item-figure" style="background:url('@Url.Content(String.Format("~/Images/Upload/{0}",@Html.DisplayFor(modelItem => item.Hinh_minh_hoa)+".jpg"))');background-size:cover">
                     <div class="preview">
-                        <span><a href="#"><i class="fas fa-eye"></i>Xem chi tiết</a></span>
+                        <div class="preview-wrap">
+                            <div><a href="@Url.Action("Details","Book", new { id = item.Ms})"><i class="fa fa-search"></i>Xem chi tiết</a></div>
+                            <div>
+                                <a href="#" id="@Html.DisplayFor(modelItem => item.Ms)" data-toggle="modal" data-target="@Html.DisplayFor(modelItem => item.Ms)" class="showModal" onclick="event.preventDefault()">
+                                    <i class="far fa-edit"></i>
+                                    Chỉnh sửa
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="@Html.DisplayFor(modelItem => item.Ms)" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Chỉnh sửa thông tin sách</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    @using (Html.BeginForm("Edit", "Book", new { id = item.Ms }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        @Html.HiddenFor(modelItem => item.Ms)
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3" for="item_Ten_sach">Ten_sach</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control text-box single-line" id="Ten_sach" name="Ten_sach" type="text" value="@Html.DisplayFor(modelItem => item.Ten_sach)" />
+                                                <span class="field-validation-valid text-danger" data-valmsg-for="item.Ten_sach" data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3" for="item_Don_gia">Don_gia</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control text-box single-line" data-val="true" data-val-number="The field Don_gia must be a number." id="Don_gia" name="Don_gia" type="text" value="@Html.DisplayFor(modelItem => item.Don_gia)" />
+                                                <span class="field-validation-valid text-danger" data-valmsg-for="item.Don_gia" data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3" for="item_Don_vi_tinh">Don_vi_tinh</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control text-box single-line" id="Don_vi_tinh" name="Don_vi_tinh" type="text" value="@Html.DisplayFor(modelItem => item.Don_vi_tinh)" />
+                                                <span class="field-validation-valid text-danger" data-valmsg-for="item.Don_vi_tinh" data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3" for="item_Mo_ta">Mo_ta</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control text-box single-line" id="Mo_ta" name="Mo_ta" type="text" value="@Html.DisplayFor(modelItem => item.Mo_ta)" />
+                                                <span class="field-validation-valid text-danger" data-valmsg-for="item.Mo_ta" data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3" for="item_Hinh_minh_hoa">Hinh_minh_hoa</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control text-box single-line" id="item_Hinh_minh_hoa" name="Hinh_minh_hoa" type="text" value="@Html.DisplayFor(modelItem => item.Hinh_minh_hoa)" />
+                                                <span class="field-validation-valid text-danger" data-valmsg-for="item.Hinh_minh_hoa" data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                            <input type="submit" value="Lưu" class="btn btn-default" />
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="description">
-                    <h3 class="book-label"><a href="#">@Html.DisplayFor(modelItem => item.Ten_sach)</a></h3>
+                    @*<h3 class="book-label"><a href="@Url.Action("Details","Book", new { id = item.Ms})">@Html.DisplayFor(modelItem => item.Ten_sach)</a></h3>*@
+                    <h3 class="book-label"><a href="@Url.Action("Details","Book", new { id = item.Ms})">@item.Ten_sach.Substring(0, Math.Min(item.Ten_sach.Length, 30))</a></h3>
+
                     <div class="category description-item"><strong>Danh mục: </strong><span>@Html.DisplayFor(modelItem => item.CHU_DE.Ten_chu_de)</span></div>
                     <div class="author description-item"><strong>Nhà xuất bản: </strong><span>@Html.DisplayFor(modelItem => item.NHA_XUAT_BAN.Ten_nha_xuat_ban)</span></div>
                 </div>
@@ -134,5 +140,6 @@
         </div>
     }
 </div>
+
 
 

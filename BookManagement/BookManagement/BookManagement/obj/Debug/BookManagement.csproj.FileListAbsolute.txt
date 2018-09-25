@@ -242,3 +242,7 @@ D:\projectSem3\BookManagement\BookManagement\BookManagement\BookManagement\obj\D
 D:\projectSem3\BookManagement\BookManagement\BookManagement\BookManagement\obj\Debug\BookManagement.csproj.CopyComplete
 D:\projectSem3\BookManagement\BookManagement\BookManagement\BookManagement\obj\Debug\BookManagement.dll
 D:\projectSem3\BookManagement\BookManagement\BookManagement\BookManagement\obj\Debug\BookManagement.pdb
+D:\projectSem3\BookManagement\BookManagement\BookManagement\BookManagement\bin\PagedList.dll
+D:\projectSem3\BookManagement\BookManagement\BookManagement\BookManagement\bin\PagedList.Mvc.dll
+D:\projectSem3\BookManagement\BookManagement\BookManagement\BookManagement\bin\PagedList.xml
+D:\projectSem3\BookManagement\BookManagement\BookManagement\BookManagement\bin\PagedList.Mvc.xml

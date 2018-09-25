@@ -14,6 +14,7 @@ namespace BookManagement.Controllers
     public class BookController : Controller
     {
         private QLBanSachEntities db = new QLBanSachEntities();
+        [Authorize]
         [HttpGet]
         // GET: Book
         public ActionResult Index()
@@ -21,12 +22,13 @@ namespace BookManagement.Controllers
             var sACH = db.SACH.Include(s => s.CHU_DE).Include(s => s.NHA_XUAT_BAN);
             return View(sACH.ToList());
         }
-        //find Book
+
         [HttpPost]
-        public ActionResult Index(string bookName, string bookCategory)
+        public ActionResult updateBook(string bookName, string bookCategory)
         {
-            var books = db.SACH.ToList().Where(p => p.Ten_sach.Contains(bookName) && p.CHU_DE.Ten_chu_de.Contains(bookCategory));
-            return View(books);
+            //var books = db.SACH.toList();
+            var books = db.SACH.Where(p => p.Ten_sach.Contains(bookName) && p.CHU_DE.Ten_chu_de.Contains(bookCategory)).ToList();
+            return View("Index",books);
         }
         // GET: Book/Details/5
         public ActionResult Details(int? id)
@@ -92,17 +94,23 @@ namespace BookManagement.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Ms,Ten_sach,Don_gia,Don_vi_tinh,Mo_ta,Hinh_minh_hoa,Mcd,Mnxb,Ngay_cap_nhat,So_luong_ban,So_lan_xem,so_luong_con")] SACH sACH)
+        public ActionResult Edit(int? id, SACH obj)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(sACH).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.Mcd = new SelectList(db.CHU_DE, "Mcd", "Ten_chu_de", sACH.Mcd);
-            ViewBag.Mnxb = new SelectList(db.NHA_XUAT_BAN, "Mnxb", "Ten_nha_xuat_ban", sACH.Mnxb);
-            return View(sACH);
+            var books = db.SACH.Find(id);
+            //SACH objBook = new SACH();
+            //objBook.Ten_sach = Request.Form["Ten_sach"];
+
+            books.Ten_sach = Request.Form["Ten_sach"];
+            books.Don_gia = Decimal.Parse(Request.Form["Don_gia"]);
+            books.Don_vi_tinh = Request.Form["Don_vi_tinh"];
+            books.Mo_ta = Request.Form["Mo_ta"];
+            books.Hinh_minh_hoa = Request.Form["Hinh_minh_hoa"];
+            //books.Mcd = Int32.Parse(Request.Form["Mcd"]);
+            //books.Mnxb = Int32.Parse(Request.Form["Mnxb"]);
+
+            db.Entry(books).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // GET: Book/Delete/5
